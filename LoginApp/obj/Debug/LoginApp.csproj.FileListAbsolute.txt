@@ -1,0 +1,13 @@
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\bin\Debug\LoginApp.exe.config
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\bin\Debug\LoginApp.exe
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\bin\Debug\LoginApp.pdb
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.Properties.Resources.resources
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.csproj.GenerateResource.cache
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.csproj.CoreCompileInputs.cache
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.exe
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.pdb
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.Login.resources
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\bin\Debug\MySql.Data.dll
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.csproj.CopyComplete
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.register.resources
+C:\Users\Tamoza\source\repos\LoginApp\LoginApp\obj\Debug\LoginApp.Welcome.resources
