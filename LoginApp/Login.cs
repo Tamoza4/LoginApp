@@ -50,50 +50,62 @@ namespace LoginApp
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            {
-                i = 0;
-                con.Open();
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from Logindb where UserName= '" + TextUserName.Text + "' and password= '" + TextPass.Text + "'";
-                cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                da.Fill(dt);
-                i = Convert.ToInt32(dt.Rows.Count.ToString());
+{
+    con.Open();
 
+    // use parameterized query to prevent SQL injection
+    string query = "SELECT * FROM Logindb WHERE UserName = @username AND password = @password";
+    MySqlCommand cmd = con.CreateCommand();
+    cmd.CommandType = CommandType.Text;
+    cmd.CommandText = query;
+    cmd.Parameters.AddWithValue("@username", TextUserName.Text);
+    cmd.Parameters.AddWithValue("@password", TextPass.Text);
 
-                if (i == 0)
-                {
-                    TextLoginError.Text = "User name or Password is invalid, Please contact the support";
-                }
-                else
-                {
-                    btnLogin.Enabled = false;
-                    TextLoginError.ForeColor = Color.Green;
-                    this.TextLoginError.Text = "                                   connecting.";
-                    progressBar1.Visible = true;
-                    this.timer1.Start();
-                    await Task.Delay(1000);
-                    this.TextLoginError.Text = "                                   connecting..";
-                    await Task.Delay(1000);
-                    this.TextLoginError.Text = "                                   connecting...";
-                    await Task.Delay(1000);
-                    this.TextLoginError.Text = "                                   connected";
-                    await Task.Delay(500);
-                    //await Task.Delay(3000);
-                    Welcome welc = new Welcome();
-                    welc.Show();
-                    Hide();
-                }
+    cmd.ExecuteNonQuery();
+    DataTable dt = new DataTable();
+    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+    da.Fill(dt);
+    int i = Convert.ToInt32(dt.Rows.Count.ToString());
 
-                con.Close();
+    if (i == 0)
+    {
+        TextLoginError.Text = "User name or Password is invalid, Please contact the support";
+    }
+    else
+    {
+        btnLogin.Enabled = false;
+        TextLoginError.ForeColor = Color.Green;
+        this.TextLoginError.Text = "                                   connecting.";
+        progressBar1.Visible = true;
+        this.timer1.Start();
+        await Task.Delay(1000);
+        this.TextLoginError.Text = "                                   connecting..";
+        await Task.Delay(1000);
+        this.TextLoginError.Text = "                                   connecting...";
+        await Task.Delay(1000);
+        this.TextLoginError.Text = "                                   connected";
+        await Task.Delay(500);
+        //await Task.Delay(3000);
+        Welcome welc = new Welcome();
+        welc.Show();
+        Hide();
+    }
+}
+catch (MySqlException ex)
+{
+    // handle MySqlException
+    TextLoginError.Text = "Error with database: " + ex.Message;
+}
+catch (Exception ex)
+{
+    // handle other exceptions
+    TextLoginError.Text = "An error occurred: " + ex.Message;
+}
+finally
+{
+    con.Close();
+}
 
-            }
-            catch
-            {
-                TextLoginError.Text = "Error with Database";
-            }
 
 
             if (checkSaveLogin.Checked)
